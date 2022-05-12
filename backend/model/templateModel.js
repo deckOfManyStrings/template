@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 
-const templateSchema = mongoose.Schema({
+const templateSchema = mongoose.Schema(
+    {
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
+        },
         text: {
             type: String,
             required: [true, 'Please add a text value']
@@ -9,6 +15,6 @@ const templateSchema = mongoose.Schema({
     {
         timestamps: true,
     }
-    )
+)
 
 module.exports = mongoose.model('template', templateSchema)

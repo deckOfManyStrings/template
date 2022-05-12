@@ -4,8 +4,9 @@ const { getTemplate,
         setTemplate,
         updateTemplate,
         deleteTemplate } = require('../controllers/templateController')
+const { protect } = require('../middleware/authMiddleware')
 
-router.route('/').get(getTemplate).post(setTemplate)
-router.route('/:id').put(updateTemplate).delete(deleteTemplate)
+router.route('/').get(protect, getTemplate).post(protect, setTemplate)
+router.route('/:id').put(protect, updateTemplate).delete(protect, deleteTemplate)
 
 module.exports = router
